@@ -4,6 +4,7 @@ import { Input, Select, Space, Card } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./App";
+import "./App";
 
 
 const searchFilter = [
