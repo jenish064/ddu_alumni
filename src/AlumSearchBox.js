@@ -2,7 +2,10 @@ import React, { useState } from "react";
 // import { useMount } from "react-use";
 import { Input, Select, Space, Card } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faCircleXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 const searchFilter = [
   {
@@ -108,7 +111,9 @@ export default function AlumSearchBox() {
     setState({
       ...state,
       searchFilter: filter,
-      filteredList: filterSearchList(state.searchInput, filter),
+      filteredList: state.searchInput
+        ? filterSearchList(state.searchInput, filter)
+        : [],
     });
     // search function (state.searchInput, filter)
   };
@@ -133,15 +138,21 @@ export default function AlumSearchBox() {
       </Space.Compact>
 
       <Space direction="vertical" size={16}>
-        {state.filteredList.map((card) => {
-          return (
-            <Card title={card.name} style={{ width: 300 }}>
-              <p>organization: {card.organization}</p>
-              <p>designation: {card.designation}</p>
-              <p>email: {card.email}</p>
-            </Card>
-          );
-        })}
+        {state.searchInput.length > 0 && state.filteredList.length > 0 ? (
+          state.filteredList.map((card) => {
+            return (
+              <Card title={card.name} style={{ width: 300 }}>
+                <p>organization: {card.organization}</p>
+                <p>designation: {card.designation}</p>
+                <p>email: {card.email}</p>
+              </Card>
+            );
+          })
+        ) : state.searchInput.length > 0 && state.filteredList.length === 0 ? (
+          <FontAwesomeIcon icon={faCircleXmark} />
+        ) : (
+          ""
+        )}
       </Space>
     </div>
   );

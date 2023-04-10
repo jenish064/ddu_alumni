@@ -1,8 +1,10 @@
 import AlumSearchBox from "./AlumSearchBox";
+import Registration from "./Registration";
 function App() {
   return (
     <div>
-      <AlumSearchBox />
+      <Registration />
+      {/* <AlumSearchBox /> */}
     </div>
   );
 }
