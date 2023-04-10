@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Axios from "axios";
 import { Button, Form, Input, Select } from "antd";
 
 let batchYears = [];
@@ -44,7 +45,15 @@ export default function Registration() {
 
   const handleSubmit = () => {
     // make post request
+    Axios.post("http://localhost:5000/register", {
+      registrationDetails: state,
+    }).then((e) => {
+      console.log("handle submit", e);
+    });
+
     console.log("success!!!::", state.email);
+
+    // reset the form
     resetForm();
   };
 
